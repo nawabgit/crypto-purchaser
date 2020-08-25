@@ -121,7 +121,7 @@ export function App() {
                         paddingTop: 10,
                       }}
                       src={bitstampLogo}
-                      title="Company Small Logo"
+                      title="Bitstamp Logo"
                     />
                   }
                 ></CardHeader>
@@ -133,7 +133,7 @@ export function App() {
                     type="password"
                   />
                   <Button mt={2} fullWidth variant="contained" color="primary">
-                    Log into Bitstamp
+                    Authenticate Key
                   </Button>
                 </CardContent>
               </div>
