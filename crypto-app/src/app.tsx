@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { styled as muiStyled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
 import MuiButton from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import companyLogo from "../src/common/images/cover.png";
+import companyLogo from "../src/common/images/company-logo-cover.png";
+import coinbaseLogo from "../src/common/images/coinbase-logo.png";
+import bitstampLogo from "../src/common/images/bitstamp-logo.svg";
 
 import {
   Card,
@@ -15,6 +18,9 @@ import {
   CardMedia,
   Divider,
   Fade,
+  CardHeader,
+  IconButton,
+  TextField,
 } from "@material-ui/core";
 
 const Button = muiStyled(MuiButton)(spacing);
@@ -71,7 +77,6 @@ export function App() {
             <Fade timeout={2000} in={true}>
               <div>
                 <CompanyLogo image={companyLogo} title="Crypto App Logo" />
-                <Divider />
                 <CardContent>
                   <Button
                     mt={2}
@@ -98,26 +103,37 @@ export function App() {
           {mode == "Bitstamp" && (
             <Fade timeout={2000} in={true}>
               <div>
-                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
-                <Divider />
+                <CardHeader
+                  avatar={
+                    <IconButton
+                      aria-label="back"
+                      size="small"
+                      onClick={() => setMode("Home")}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
+                  }
+                  action={
+                    <img
+                      style={{
+                        height: 50,
+                        width: 50,
+                        paddingTop: 10,
+                      }}
+                      src={bitstampLogo}
+                      title="Company Small Logo"
+                    />
+                  }
+                ></CardHeader>
                 <CardContent>
-                  <Button
-                    mt={2}
-                    onClick={() => setMode("Bitstamp")}
+                  <TextField
+                    label="API Key *"
                     fullWidth
                     variant="outlined"
-                    color="primary"
-                  >
+                    type="password"
+                  />
+                  <Button mt={2} fullWidth variant="contained" color="primary">
                     Log into Bitstamp
-                  </Button>
-                  <Button
-                    mt={2}
-                    onClick={() => setMode("Coinbase")}
-                    fullWidth
-                    variant="outlined"
-                    color="secondary"
-                  >
-                    Log into Coinbase
                   </Button>
                 </CardContent>
               </div>
