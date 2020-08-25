@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { styled as muiStyled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
@@ -14,6 +14,7 @@ import {
   CssBaseline,
   CardMedia,
   Divider,
+  Fade,
 } from "@material-ui/core";
 
 const Button = muiStyled(MuiButton)(spacing);
@@ -56,34 +57,100 @@ const theme = createMuiTheme({
   },
 });
 
+type Mode = "Home" | "Bitstamp" | "Coinbase";
+
 export function App() {
+  const [mode, setMode] = useState<Mode>("Home");
+
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BackgroundContainer>
         <PickCompanyCard>
-          <CompanyLogo image={companyLogo} title="Crypto App Logo" />
-          <Divider />
-          <CardContent>
-            <Button
-              mt={2}
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="primary"
-            >
-              Log into Bitstamp
-            </Button>
-            <Button
-              mt={2}
-              type="submit"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-            >
-              Log into Coinbase
-            </Button>
-          </CardContent>
+          {mode == "Home" && (
+            <Fade timeout={2000} in={true}>
+              <div>
+                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
+                <Divider />
+                <CardContent>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Bitstamp")}
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Log into Bitstamp
+                  </Button>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Coinbase")}
+                    fullWidth
+                    variant="outlined"
+                    color="secondary"
+                  >
+                    Log into Coinbase
+                  </Button>
+                </CardContent>
+              </div>
+            </Fade>
+          )}
+          {mode == "Bitstamp" && (
+            <Fade timeout={2000} in={true}>
+              <div>
+                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
+                <Divider />
+                <CardContent>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Bitstamp")}
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Log into Bitstamp
+                  </Button>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Coinbase")}
+                    fullWidth
+                    variant="outlined"
+                    color="secondary"
+                  >
+                    Log into Coinbase
+                  </Button>
+                </CardContent>
+              </div>
+            </Fade>
+          )}
+          {mode == "Coinbase" && (
+            <Fade timeout={2000} in={true}>
+              <div>
+                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
+                <Divider />
+                <CardContent>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Bitstamp")}
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Log into Bitstamp
+                  </Button>
+                  <Button
+                    mt={2}
+                    onClick={() => setMode("Coinbase")}
+                    fullWidth
+                    variant="outlined"
+                    color="secondary"
+                  >
+                    Log into Coinbase
+                  </Button>
+                </CardContent>
+              </div>
+            </Fade>
+          )}
         </PickCompanyCard>
       </BackgroundContainer>
     </MuiThemeProvider>
