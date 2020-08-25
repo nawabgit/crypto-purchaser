@@ -6,16 +6,6 @@ import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: #F7F8FB;
-    font-size: 14pt;
-    font-family: Roboto, sans-serif;
-  }
-
   * {
     scrollbar-width: thin;
     scrollbar-color: gray gray;
