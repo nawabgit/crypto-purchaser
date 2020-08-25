@@ -20,10 +20,11 @@ import {
   Fade,
   CardHeader,
   IconButton,
-  TextField,
+  TextField as MuiTextField,
 } from "@material-ui/core";
 
 const Button = muiStyled(MuiButton)(spacing);
+const TextField = muiStyled(MuiTextField)(spacing);
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -39,6 +40,10 @@ const PickCompanyCard = styled(Card)`
   flex-direction: column;
   align-items: center;
   min-width: 400px;
+`;
+
+const CardContentContainer = styled.div`
+  width: 400px;
 `;
 
 const CompanyLogo = styled(CardMedia)`
@@ -102,7 +107,7 @@ export function App() {
           )}
           {mode == "Bitstamp" && (
             <Fade timeout={2000} in={true}>
-              <div>
+              <CardContentContainer>
                 <CardHeader
                   avatar={
                     <IconButton
@@ -127,21 +132,35 @@ export function App() {
                 ></CardHeader>
                 <CardContent>
                   <TextField
-                    label="API Key *"
+                    mt={2}
+                    label="Customer ID *"
+                    variant="outlined"
                     fullWidth
+                  />
+                  <TextField
+                    mt={2}
+                    label="API Key *"
                     variant="outlined"
                     type="password"
+                    fullWidth
+                  />
+                  <TextField
+                    mt={2}
+                    label="API Secret *"
+                    variant="outlined"
+                    type="password"
+                    fullWidth
                   />
                   <Button mt={2} fullWidth variant="contained" color="primary">
                     Authenticate Key
                   </Button>
                 </CardContent>
-              </div>
+              </CardContentContainer>
             </Fade>
           )}
           {mode == "Coinbase" && (
             <Fade timeout={2000} in={true}>
-              <div>
+              <CardContentContainer>
                 <CardHeader
                   avatar={
                     <IconButton
@@ -168,11 +187,18 @@ export function App() {
                 ></CardHeader>
                 <CardContent>
                   <TextField
+                    mt={2}
                     label="API Key *"
-                    fullWidth
                     variant="outlined"
                     type="password"
-                    color="secondary"
+                    fullWidth
+                  />
+                  <TextField
+                    mt={2}
+                    label="API Secret *"
+                    variant="outlined"
+                    type="password"
+                    fullWidth
                   />
                   <Button
                     mt={2}
@@ -183,7 +209,7 @@ export function App() {
                     Authenticate Key
                   </Button>
                 </CardContent>
-              </div>
+              </CardContentContainer>
             </Fade>
           )}
         </PickCompanyCard>
