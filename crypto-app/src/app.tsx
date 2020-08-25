@@ -142,26 +142,45 @@ export function App() {
           {mode == "Coinbase" && (
             <Fade timeout={2000} in={true}>
               <div>
-                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
-                <Divider />
+                <CardHeader
+                  avatar={
+                    <IconButton
+                      aria-label="back"
+                      size="small"
+                      onClick={() => setMode("Home")}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
+                  }
+                  action={
+                    <img
+                      style={{
+                        borderRadius: 50,
+                        height: 40,
+                        width: 40,
+                        marginTop: 10,
+                        marginRight: 5,
+                      }}
+                      src={coinbaseLogo}
+                      title="Coinbase Logo"
+                    />
+                  }
+                ></CardHeader>
                 <CardContent>
-                  <Button
-                    mt={2}
-                    onClick={() => setMode("Bitstamp")}
+                  <TextField
+                    label="API Key *"
                     fullWidth
                     variant="outlined"
-                    color="primary"
-                  >
-                    Log into Bitstamp
-                  </Button>
+                    type="password"
+                    color="secondary"
+                  />
                   <Button
                     mt={2}
-                    onClick={() => setMode("Coinbase")}
                     fullWidth
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
                   >
-                    Log into Coinbase
+                    Authenticate Key
                   </Button>
                 </CardContent>
               </div>
