@@ -65,16 +65,8 @@ export function App() {
       <BackgroundContainer>
         <PickCompanyCard>
           {mode == "Home" && <Home setMode={setMode} />}
-          {mode == "Bitstamp" && (
-            <Fade timeout={2000} in={true}>
-              <Bitstamp setMode={setMode} />
-            </Fade>
-          )}
-          {mode == "Coinbase" && (
-            <Fade timeout={2000} in={true}>
-              <Coinbase setMode={setMode} />
-            </Fade>
-          )}
+          {mode == "Bitstamp" && <Bitstamp setMode={setMode} />}
+          {mode == "Coinbase" && <Coinbase setMode={setMode} />}
         </PickCompanyCard>
       </BackgroundContainer>
     </MuiThemeProvider>
