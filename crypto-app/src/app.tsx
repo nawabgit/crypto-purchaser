@@ -5,26 +5,18 @@ import { spacing } from "@material-ui/system";
 import MuiButton from "@material-ui/core/Button";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import companyLogo from "../src/common/images/company-logo-cover.png";
-import coinbaseLogo from "../src/common/images/coinbase-logo.png";
-import bitstampLogo from "../src/common/images/bitstamp-logo.svg";
-
 import {
   Card,
-  CardContent,
   createMuiTheme,
   MuiThemeProvider,
   CssBaseline,
-  CardMedia,
-  Divider,
   Fade,
-  CardHeader,
-  IconButton,
   TextField as MuiTextField,
 } from "@material-ui/core";
 
-const Button = muiStyled(MuiButton)(spacing);
-const TextField = muiStyled(MuiTextField)(spacing);
+import Home from "features/home/home";
+import Bitstamp from "features/bitstamp/bitstamp";
+import Coinbase from "features/coinbase/coinbase";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -42,14 +34,8 @@ const PickCompanyCard = styled(Card)`
   min-width: 400px;
 `;
 
-const CardContentContainer = styled.div`
+export const CardContentContainer = styled.div`
   width: 400px;
-`;
-
-const CompanyLogo = styled(CardMedia)`
-  width: 400px;
-  height: 125px;
-  border-bottom: solid 1px #d3d3d3;
 `;
 
 const theme = createMuiTheme({
@@ -68,7 +54,7 @@ const theme = createMuiTheme({
   },
 });
 
-type Mode = "Home" | "Bitstamp" | "Coinbase";
+export type Mode = "Home" | "Bitstamp" | "Coinbase";
 
 export function App() {
   const [mode, setMode] = useState<Mode>("Home");
@@ -78,138 +64,15 @@ export function App() {
       <CssBaseline />
       <BackgroundContainer>
         <PickCompanyCard>
-          {mode == "Home" && (
-            <Fade timeout={2000} in={true}>
-              <div>
-                <CompanyLogo image={companyLogo} title="Crypto App Logo" />
-                <CardContent>
-                  <Button
-                    mt={2}
-                    onClick={() => setMode("Bitstamp")}
-                    fullWidth
-                    variant="outlined"
-                    color="primary"
-                  >
-                    Log into Bitstamp
-                  </Button>
-                  <Button
-                    mt={2}
-                    onClick={() => setMode("Coinbase")}
-                    fullWidth
-                    variant="outlined"
-                    color="secondary"
-                  >
-                    Log into Coinbase
-                  </Button>
-                </CardContent>
-              </div>
-            </Fade>
-          )}
+          {mode == "Home" && <Home setMode={setMode} />}
           {mode == "Bitstamp" && (
             <Fade timeout={2000} in={true}>
-              <CardContentContainer>
-                <CardHeader
-                  avatar={
-                    <IconButton
-                      aria-label="back"
-                      size="small"
-                      onClick={() => setMode("Home")}
-                    >
-                      <ArrowBackIcon />
-                    </IconButton>
-                  }
-                  action={
-                    <img
-                      style={{
-                        height: 50,
-                        width: 50,
-                        paddingTop: 10,
-                      }}
-                      src={bitstampLogo}
-                      title="Bitstamp Logo"
-                    />
-                  }
-                ></CardHeader>
-                <CardContent>
-                  <TextField
-                    mt={2}
-                    label="Customer ID *"
-                    variant="outlined"
-                    fullWidth
-                  />
-                  <TextField
-                    mt={2}
-                    label="API Key *"
-                    variant="outlined"
-                    type="password"
-                    fullWidth
-                  />
-                  <TextField
-                    mt={2}
-                    label="API Secret *"
-                    variant="outlined"
-                    type="password"
-                    fullWidth
-                  />
-                  <Button mt={2} fullWidth variant="contained" color="primary">
-                    Authenticate Key
-                  </Button>
-                </CardContent>
-              </CardContentContainer>
+              <Bitstamp setMode={setMode} />
             </Fade>
           )}
           {mode == "Coinbase" && (
             <Fade timeout={2000} in={true}>
-              <CardContentContainer>
-                <CardHeader
-                  avatar={
-                    <IconButton
-                      aria-label="back"
-                      size="small"
-                      onClick={() => setMode("Home")}
-                    >
-                      <ArrowBackIcon />
-                    </IconButton>
-                  }
-                  action={
-                    <img
-                      style={{
-                        borderRadius: 50,
-                        height: 40,
-                        width: 40,
-                        marginTop: 10,
-                        marginRight: 5,
-                      }}
-                      src={coinbaseLogo}
-                      title="Coinbase Logo"
-                    />
-                  }
-                ></CardHeader>
-                <CardContent>
-                  <TextField
-                    mt={2}
-                    label="API Key *"
-                    variant="outlined"
-                    type="password"
-                    fullWidth
-                  />
-                  <TextField
-                    mt={2}
-                    label="API Secret *"
-                    variant="outlined"
-                    type="password"
-                    fullWidth
-                  />
-                  <Button
-                    mt={2}
-                    fullWidth
-                    variant="contained"
-                    color="secondary"
-                  >
-                    Authenticate Key
-                  </Button>
-                </CardContent>
-              </CardContentContainer>
+              <Coinbase setMode={setMode} />
             </Fade>
           )}
         </PickCompanyCard>
