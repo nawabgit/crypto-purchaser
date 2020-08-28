@@ -4,6 +4,7 @@ import exhaustivenessCheck from "common/utils/exhaustivenessCheck";
 import { ThunkAction } from "store";
 
 import CryptoJS from "crypto-js";
+import Axios from "axios";
 
 // Plain actions
 interface AuthStarted {
@@ -88,7 +89,7 @@ export const doBitstampLogin = (
     .toUpperCase();
 
   try {
-    await api.post("https://www.bitstamp.net/api/v2/balance/", {
+    await Axios.post("https://www.bitstamp.net/api/balance/", {
       key: apiKey,
       nonce: unix_timestamp_ms,
       signature,
