@@ -1,6 +1,9 @@
 import { Reducer } from "react";
 import { produce } from "immer";
 import exhaustivenessCheck from "common/utils/exhaustivenessCheck";
+import { ThunkAction } from "store";
+
+import CryptoJS from "crypto-js";
 
 // Plain actions
 interface AuthStarted {
@@ -63,3 +66,34 @@ export const loginReducer: Reducer<AuthState, AuthActions> = (
         exhaustivenessCheck(action);
     }
   });
+
+/**
+ * Tries to authenticate the user with given customer id, api key and api secret
+ * @param customerId
+ * @param apiKey
+ * @param apiSecret
+ */
+export const doBitstampLogin = (
+  customerId: string,
+  apiKey: string,
+  apiSecret: string
+): ThunkAction<Promise<void>> => async (dispatch, getState, { api }) => {
+  dispatch({ type: "bitstamp/auth/started" });
+
+  const unix_timestamp_ms = Math.round(+new Date());
+  const message = unix_timestamp_ms.toString() + customerId + apiKey;
+
+  var signature = CryptoJS.HmacSHA256(message, apiSecret)
+    .toString(CryptoJS.enc.Hex)
+    .toUpperCase();
+
+  try {
+    await api.post("https://www.bitstamp.net/api/v2/balance/", {
+      key: apiKey,
+      nonce: unix_timestamp_ms,
+      signature,
+    });
+  } catch (e) {
+    // TODO
+  }
+};
