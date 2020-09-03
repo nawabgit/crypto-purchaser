@@ -17,6 +17,7 @@ import {
 import Home from "features/home/home";
 import Bitstamp from "features/bitstamp/bitstamp";
 import Coinbase from "features/coinbase/coinbase";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -54,19 +55,24 @@ const theme = createMuiTheme({
   },
 });
 
-export type Mode = "Home" | "Bitstamp" | "Coinbase";
-
 export function App() {
-  const [mode, setMode] = useState<Mode>("Home");
-
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BackgroundContainer>
         <PickCompanyCard>
-          {mode == "Home" && <Home setMode={setMode} />}
-          {mode == "Bitstamp" && <Bitstamp setMode={setMode} />}
-          {mode == "Coinbase" && <Coinbase setMode={setMode} />}
+          <Switch>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/bitstamp">
+              <Bitstamp />
+            </Route>
+            <Route path="/coinbase">
+              <Coinbase />
+            </Route>
+            <Redirect to="/home" />
+          </Switch>
         </PickCompanyCard>
       </BackgroundContainer>
     </MuiThemeProvider>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Mode, CardContentContainer } from "app";
+import { CardContentContainer } from "app";
 import {
   Button as MuiButton,
   CardHeader,
@@ -13,27 +13,22 @@ import { spacing } from "@material-ui/system";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import coinbaseLogo from "common/images/coinbase-logo.png";
+import { Link } from "react-router-dom";
 
 const Button = muiStyled(MuiButton)(spacing);
 const TextField = muiStyled(MuiTextField)(spacing);
 
-interface CoinbaseNode {
-  setMode: React.Dispatch<React.SetStateAction<Mode>>;
-}
-
-function Coinbase({ setMode }: CoinbaseNode) {
+function Coinbase() {
   return (
     <Fade timeout={2000} in={true}>
       <CardContentContainer>
         <CardHeader
           avatar={
-            <IconButton
-              aria-label="back"
-              size="small"
-              onClick={() => setMode("Home")}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+            <Link to="home">
+              <IconButton aria-label="back" size="small">
+                <ArrowBackIcon />
+              </IconButton>
+            </Link>
           }
           action={
             <img

@@ -10,7 +10,7 @@ import {
 import { spacing } from "@material-ui/system";
 
 import companyLogo from "common/images/company-logo-cover.png";
-import { Mode } from "app";
+import { Link } from "react-router-dom";
 
 const CompanyLogo = styled(CardMedia)`
   width: 400px;
@@ -20,34 +20,26 @@ const CompanyLogo = styled(CardMedia)`
 
 const Button = muiStyled(MuiButton)(spacing);
 
-interface HomeNode {
-  setMode: React.Dispatch<React.SetStateAction<Mode>>;
-}
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
-function Home({ setMode }: HomeNode) {
+function Home() {
   return (
     <Fade timeout={2000} in={true}>
       <div>
         <CompanyLogo image={companyLogo} title="Crypto App Logo" />
         <CardContent>
-          <Button
-            mt={2}
-            onClick={() => setMode("Bitstamp")}
-            fullWidth
-            variant="outlined"
-            color="primary"
-          >
-            Log into Bitstamp
-          </Button>
-          <Button
-            mt={2}
-            onClick={() => setMode("Coinbase")}
-            fullWidth
-            variant="outlined"
-            color="secondary"
-          >
-            Log into Coinbase
-          </Button>
+          <StyledLink to="/bitstamp">
+            <Button mt={2} fullWidth variant="outlined" color="primary">
+              Log into Bitstamp
+            </Button>
+          </StyledLink>
+          <StyledLink to="/coinbase">
+            <Button mt={2} fullWidth variant="outlined" color="secondary">
+              Log into Coinbase
+            </Button>
+          </StyledLink>
         </CardContent>
       </div>
     </Fade>

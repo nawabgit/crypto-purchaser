@@ -1,5 +1,5 @@
 import React from "react";
-import { Mode, CardContentContainer } from "app";
+import { CardContentContainer } from "app";
 import {
   Button as MuiButton,
   CardHeader,
@@ -14,15 +14,12 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import bitstampLogo from "common/images/bitstamp-logo.svg";
 import useDispatch from "common/utils/useDispatch";
+import { Link } from "react-router-dom";
 
 const Button = muiStyled(MuiButton)(spacing);
 const TextField = muiStyled(MuiTextField)(spacing);
 
-interface BitstampNode {
-  setMode: React.Dispatch<React.SetStateAction<Mode>>;
-}
-
-function Bitstamp({ setMode }: BitstampNode) {
+function Bitstamp() {
   const dispatch = useDispatch();
 
   return (
@@ -30,13 +27,11 @@ function Bitstamp({ setMode }: BitstampNode) {
       <CardContentContainer>
         <CardHeader
           avatar={
-            <IconButton
-              aria-label="back"
-              size="small"
-              onClick={() => setMode("Home")}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+            <Link to="/home">
+              <IconButton aria-label="back" size="small">
+                <ArrowBackIcon />
+              </IconButton>
+            </Link>
           }
           action={
             <img
