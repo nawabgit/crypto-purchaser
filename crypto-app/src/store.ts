@@ -4,13 +4,13 @@ import thunkMiddleware, { ThunkAction as BaseThunkAction } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
-  AuthActions as BitstampAuthActions,
-  loginReducer as BitstampLogin,
-} from "features/bitstamp/state";
+  AuthActions as CoinbaseAuthActions,
+  loginReducer as CoinbaseLogin,
+} from "features/coinbase/state";
 
 export const api: AxiosInstance = axios.create({});
 
-const rootReducer = Redux.combineReducers({ bitstamp: BitstampLogin });
+const rootReducer = Redux.combineReducers({ coinbase: CoinbaseLogin });
 
 /**
  * The whole shape of our application state
@@ -20,7 +20,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 /**
  * Union of all supported application actions
  */
-export type PlainActions = BitstampAuthActions; // add other actions as union
+export type PlainActions = CoinbaseAuthActions; // add other actions as union
 
 interface ThunkExtra {
   /** Axios instance bound to the API. */
