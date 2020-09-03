@@ -13,7 +13,6 @@ import { spacing } from "@material-ui/system";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import bitstampLogo from "common/images/bitstamp-logo.svg";
-import { doBitstampLogin } from "./state";
 import useDispatch from "common/utils/useDispatch";
 
 const Button = muiStyled(MuiButton)(spacing);
@@ -72,21 +71,7 @@ function Bitstamp({ setMode }: BitstampNode) {
             type="password"
             fullWidth
           />
-          <Button
-            onClick={() => {
-              dispatch(
-                doBitstampLogin(
-                  "ytaq9267",
-                  "qZk37PqrfySEBPjYjv0Pe7Sa4JEobUuS",
-                  "wtrcrIus8hPHe0nTYgqc65D1yXaCaD5A"
-                )
-              );
-            }}
-            mt={2}
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
+          <Button mt={2} fullWidth variant="contained" color="primary">
             Authenticate Key
           </Button>
         </CardContent>

@@ -50,22 +50,8 @@ function Coinbase({ setMode }: CoinbaseNode) {
           }
         ></CardHeader>
         <CardContent>
-          <TextField
-            mt={2}
-            label="API Key *"
-            variant="outlined"
-            type="password"
-            fullWidth
-          />
-          <TextField
-            mt={2}
-            label="API Secret *"
-            variant="outlined"
-            type="password"
-            fullWidth
-          />
           <Button mt={2} fullWidth variant="contained" color="secondary">
-            Authenticate Key
+            Log In
           </Button>
         </CardContent>
       </CardContentContainer>

@@ -88,12 +88,12 @@ export const doBitstampLogin = (
     .toString(CryptoJS.enc.Hex)
     .toUpperCase();
 
+  const formData = new FormData();
+  formData.append("key", apiKey);
+  formData.append("nonce", unix_timestamp_ms.toString());
+  formData.append("user_type", signature);
   try {
-    await Axios.post("https://www.bitstamp.net/api/balance/", {
-      key: apiKey,
-      nonce: unix_timestamp_ms,
-      signature,
-    });
+    await Axios.post("https://www.bitstamp.net/api/balance/", formData);
   } catch (e) {
     // TODO
   }
