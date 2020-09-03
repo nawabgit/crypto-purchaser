@@ -13,12 +13,19 @@ import { spacing } from "@material-ui/system";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import coinbaseLogo from "common/images/coinbase-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const Button = muiStyled(MuiButton)(spacing);
 const TextField = muiStyled(MuiTextField)(spacing);
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 function Coinbase() {
+  // We can keep track of the query params here
+  const query = useQuery();
+
   return (
     <Fade timeout={2000} in={true}>
       <CardContentContainer>
@@ -45,7 +52,17 @@ function Coinbase() {
           }
         ></CardHeader>
         <CardContent>
-          <Button mt={2} fullWidth variant="contained" color="secondary">
+          <Button
+            onClick={() =>
+              (window.location.href =
+                "https://www.coinbase.com/oauth/authorize?client_id=6acfc527a0e140861665040c76bab83dc417b884a021d82eacc4beb43fd6b230&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcoinbase&response_type=code&scope=wallet%3Auser%3Aread")
+            }
+            mt={2}
+            fullWidth
+            type="submit"
+            variant="contained"
+            color="secondary"
+          >
             Log In
           </Button>
         </CardContent>
