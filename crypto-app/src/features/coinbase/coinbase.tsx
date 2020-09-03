@@ -14,6 +14,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import coinbaseLogo from "common/images/coinbase-logo.png";
 import { Link, useLocation, useParams } from "react-router-dom";
+import useDispatch from "common/utils/useDispatch";
+import { doCoinbaseLogin } from "./state";
 
 const Button = muiStyled(MuiButton)(spacing);
 const TextField = muiStyled(MuiTextField)(spacing);
@@ -25,6 +27,13 @@ function useQuery() {
 function Coinbase() {
   // We can keep track of the query params here
   const query = useQuery();
+  const dispatch = useDispatch();
+
+  // Check if the user has been authenticated
+  const authToken = query.get("code");
+  if (authToken) {
+    dispatch(doCoinbaseLogin(authToken));
+  }
 
   return (
     <Fade timeout={2000} in={true}>
