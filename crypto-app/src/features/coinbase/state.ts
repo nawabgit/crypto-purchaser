@@ -2,6 +2,13 @@ import { Reducer } from "react";
 import produce from "immer";
 import exhaustivenessCheck from "common/utils/exhaustivenessCheck";
 import { ThunkAction } from "store";
+import * as Redux from "redux";
+
+interface Account {
+  name: string;
+  type: string;
+  balance: { amount: string; currency: string };
+}
 
 // Plain actions
 interface AuthStarted {
@@ -15,7 +22,18 @@ interface AuthFinished {
   error?: string;
 }
 
+interface AccountsStarted {
+  type: "coinbase/accounts/started";
+}
+
+interface AccountsFinished {
+  type: "coinbase/accounts/finished";
+  accounts?: Account[];
+  error?: string;
+}
+
 export type AuthActions = AuthStarted | AuthFinished;
+export type AccountActions = AccountsStarted | AccountsFinished;
 
 // States
 interface AuthState {
@@ -29,6 +47,18 @@ const defaultAuthState: AuthState = {
   pending: false,
   success: false,
   accessToken: undefined,
+  error: undefined,
+};
+
+interface AccountsState {
+  pending: boolean;
+  accounts: Account[] | undefined;
+  error: string | undefined;
+}
+
+const defaultAccountsState: AccountsState = {
+  pending: false,
+  accounts: undefined,
   error: undefined,
 };
 
@@ -56,6 +86,27 @@ export const loginReducer: Reducer<AuthState, AuthActions> = (
     }
   });
 
+export const accountsReducer: Reducer<AccountsState, AccountActions> = (
+  state = defaultAccountsState,
+  action
+) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case "coinbase/accounts/started":
+        draft.pending = true;
+        return;
+
+      case "coinbase/accounts/finished":
+        draft.pending = false;
+        draft.accounts = action.accounts;
+        draft.error = action.error;
+        return;
+
+      default:
+        exhaustivenessCheck(action);
+    }
+  });
+
 interface TokenResponse {
   access_token: string;
   token_type: string;
@@ -63,6 +114,10 @@ interface TokenResponse {
   refresh_token: string;
   scope: string;
   created_at: number;
+}
+
+interface AccountsResponse {
+  data: Account[];
 }
 
 /**
@@ -107,3 +162,37 @@ export const doCoinbaseLogin = (
     });
   }
 };
+
+/**
+ * Retrieves the accounts belonging to a user
+ */
+export const doGetCoinbaseAccounts = (): ThunkAction<Promise<void>> => async (
+  dispatch,
+  getState,
+  { api }
+) => {
+  dispatch({ type: "coinbase/accounts/started" });
+
+  try {
+    const { accessToken } = getState().coinbase.auth;
+    const response = await api.get<AccountsResponse>(
+      "https://api.coinbase.com/v2/accounts",
+      { headers: { Authorization: "Bearer " + accessToken } }
+    );
+
+    dispatch({
+      type: "coinbase/accounts/finished",
+      accounts: response.data.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: "coinbase/accounts/finished",
+      error: "Failed to retrieve accounts",
+    });
+  }
+};
+
+export const reducers = Redux.combineReducers({
+  auth: loginReducer,
+  accounts: accountsReducer,
+});

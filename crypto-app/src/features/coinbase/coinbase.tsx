@@ -19,7 +19,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import coinbaseLogo from "common/images/coinbase-logo.png";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import useDispatch from "common/utils/useDispatch";
-import { doCoinbaseLogin } from "./state";
+import { doCoinbaseLogin, doGetCoinbaseAccounts } from "./state";
 import useSelector from "common/utils/useSelector";
 
 const Button = muiStyled(MuiButton)(spacing);
@@ -35,7 +35,7 @@ function Coinbase() {
   const query = useQuery();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { pending, success } = useSelector((state) => state.coinbase);
+  const { pending, success } = useSelector((state) => state.coinbase.auth);
 
   // Check if the user has been authenticated
   const authToken = query.get("code");
@@ -90,7 +90,7 @@ function Coinbase() {
               <Button
                 onClick={() =>
                   (window.location.href =
-                    "https://www.coinbase.com/oauth/authorize?client_id=6acfc527a0e140861665040c76bab83dc417b884a021d82eacc4beb43fd6b230&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcoinbase&response_type=code&scope=wallet%3Auser%3Aread")
+                    "https://www.coinbase.com/oauth/authorize?client_id=6acfc527a0e140861665040c76bab83dc417b884a021d82eacc4beb43fd6b230&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcoinbase&response_type=code&scope=wallet%3Aaccounts%3Aread")
                 }
                 mt={2}
                 fullWidth
@@ -120,8 +120,17 @@ function Coinbase() {
 }
 
 function LoggedIn() {
+  const dispatch = useDispatch();
+
+  const { accounts } = useSelector((state) => state.coinbase.accounts);
+
+  React.useEffect(() => {
+    dispatch(doGetCoinbaseAccounts());
+  }, []);
+
   return (
     <>
+      {!!accounts && <div>YAY</div>}
       <Fade timeout={2000} in={true}>
         <Card elevation={2}>
           <CardContent>Body</CardContent>

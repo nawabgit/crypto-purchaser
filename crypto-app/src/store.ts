@@ -5,12 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
   AuthActions as CoinbaseAuthActions,
-  loginReducer as CoinbaseLogin,
+  AccountActions as CoinbaseAccountActions,
+  reducers as CoinbaseReducers,
 } from "features/coinbase/state";
 
 export const api: AxiosInstance = axios.create({});
 
-const rootReducer = Redux.combineReducers({ coinbase: CoinbaseLogin });
+const rootReducer = Redux.combineReducers({ coinbase: CoinbaseReducers });
 
 /**
  * The whole shape of our application state
@@ -20,7 +21,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 /**
  * Union of all supported application actions
  */
-export type PlainActions = CoinbaseAuthActions; // add other actions as union
+export type PlainActions = CoinbaseAuthActions | CoinbaseAccountActions; // add other actions as union
 
 interface ThunkExtra {
   /** Axios instance bound to the API. */
