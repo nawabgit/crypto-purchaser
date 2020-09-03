@@ -8,7 +8,7 @@ import {
   loginReducer as BitstampLogin,
 } from "features/bitstamp/state";
 
-export const api: AxiosInstance = axios.create();
+export const api: AxiosInstance = axios.create({});
 
 const rootReducer = Redux.combineReducers({ bitstamp: BitstampLogin });
 
