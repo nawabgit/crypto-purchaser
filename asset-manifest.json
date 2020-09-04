@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/crypto-purchaser/static/js/main.588c6a03.chunk.js",
+    "main.js.map": "/crypto-purchaser/static/js/main.588c6a03.chunk.js.map",
+    "runtime-main.js": "/crypto-purchaser/static/js/runtime-main.448372ee.js",
+    "runtime-main.js.map": "/crypto-purchaser/static/js/runtime-main.448372ee.js.map",
+    "static/js/2.fbda87a8.chunk.js": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js",
+    "static/js/2.fbda87a8.chunk.js.map": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js.map",
+    "index.html": "/crypto-purchaser/index.html",
+    "precache-manifest.30f7ed6466d05f31d033217968713d46.js": "/crypto-purchaser/precache-manifest.30f7ed6466d05f31d033217968713d46.js",
+    "service-worker.js": "/crypto-purchaser/service-worker.js",
+    "static/js/2.fbda87a8.chunk.js.LICENSE.txt": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js.LICENSE.txt",
+    "static/media/bitstamp-logo.svg": "/crypto-purchaser/static/media/bitstamp-logo.692dcf7c.svg",
+    "static/media/coinbase-logo.png": "/crypto-purchaser/static/media/coinbase-logo.3745fb4e.png",
+    "static/media/company-logo-cover.png": "/crypto-purchaser/static/media/company-logo-cover.27e8ae6a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.448372ee.js",
+    "static/js/2.fbda87a8.chunk.js",
+    "static/js/main.588c6a03.chunk.js"
+  ]
+}
