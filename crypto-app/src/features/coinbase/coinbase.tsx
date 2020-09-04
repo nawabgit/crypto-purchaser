@@ -11,6 +11,7 @@ import {
   CircularProgress,
   Card as MuiCard,
   Snackbar,
+  Typography,
 } from "@material-ui/core";
 import { spacing } from "@material-ui/system";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -19,7 +20,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import coinbaseLogo from "common/images/coinbase-logo.png";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import useDispatch from "common/utils/useDispatch";
-import { doCoinbaseLogin, doGetCoinbaseAccounts } from "./state";
+import { doCoinbaseLogin, doGetCoinbaseAccounts, Account } from "./state";
 import useSelector from "common/utils/useSelector";
 
 const Button = muiStyled(MuiButton)(spacing);
@@ -124,33 +125,48 @@ function LoggedIn() {
 
   const { accounts } = useSelector((state) => state.coinbase.accounts);
 
+  const castedAccounts = accounts as Account[];
+
   React.useEffect(() => {
     dispatch(doGetCoinbaseAccounts());
   }, []);
 
   return (
     <>
-      {!!accounts && <div>YAY</div>}
-      <Fade timeout={2000} in={true}>
-        <Card elevation={2}>
-          <CardContent>Body</CardContent>
-        </Card>
-      </Fade>
-      <Fade timeout={2000} in={true}>
-        <Card elevation={2} mt={2}>
-          <CardContent>Body</CardContent>
-        </Card>
-      </Fade>
-      <Fade timeout={2000} in={true}>
-        <Card elevation={2} mt={2}>
-          <CardContent>Body</CardContent>
-        </Card>
-      </Fade>
-      <Fade timeout={2000} in={true}>
-        <Card elevation={2} mt={2}>
-          <CardContent>Body</CardContent>
-        </Card>
-      </Fade>
+      {!!castedAccounts &&
+        castedAccounts.map((e, i) =>
+          i < 2 ? (
+            <Fade timeout={2000} in={true}>
+              <Card elevation={2} mt={2}>
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="h3">
+                    {e.name}
+                  </Typography>{" "}
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {e.balance.amount} {e.balance.currency}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Fade>
+          ) : null
+        )}
+      <TextField
+        mt={4}
+        label="Purchase Amount *"
+        variant="outlined"
+        color="secondary"
+        fullWidth
+      />
+      <Button mt={2} variant="outlined" color="secondary">
+        Place BTC Order
+      </Button>
+      <Button mt={2} ml={1} variant="outlined" color="secondary">
+        Place ETH Order
+      </Button>
     </>
   );
 }

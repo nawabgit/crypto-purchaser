@@ -4,7 +4,7 @@ import exhaustivenessCheck from "common/utils/exhaustivenessCheck";
 import { ThunkAction } from "store";
 import * as Redux from "redux";
 
-interface Account {
+export interface Account {
   name: string;
   type: string;
   balance: { amount: string; currency: string };
