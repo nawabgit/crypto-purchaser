@@ -5,7 +5,7 @@ A simple website which allows you to purchase log into Bitstamp or Coinbase, vie
 You must have yarn installed first!
 https://classic.yarnpkg.com/en/docs/install/#windows-stable
 
-Clone repository
-cd crypto-app
-yarn build
-yarn start
+Clone repository  
+cd crypto-app  
+yarn build  
+yarn start  
