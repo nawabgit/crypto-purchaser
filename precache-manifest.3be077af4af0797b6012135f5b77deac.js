@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11779c51fca0e5e1f9cfb92eea10ee90",
+    "revision": "9a984a0e33c5009de1bd81761fab3202",
     "url": "/crypto-purchaser/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0854d16fe5e561a7e029",
-    "url": "/crypto-purchaser/static/js/main.588c6a03.chunk.js"
+    "revision": "1124b548b8e9ad6083fa",
+    "url": "/crypto-purchaser/static/js/main.ff86a952.chunk.js"
   },
   {
     "revision": "c52ed4ca49a3b3b471ca",
