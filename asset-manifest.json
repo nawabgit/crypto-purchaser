@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/crypto-purchaser/static/js/main.ff86a952.chunk.js",
-    "main.js.map": "/crypto-purchaser/static/js/main.ff86a952.chunk.js.map",
+    "main.js": "/crypto-purchaser/static/js/main.afe37738.chunk.js",
+    "main.js.map": "/crypto-purchaser/static/js/main.afe37738.chunk.js.map",
     "runtime-main.js": "/crypto-purchaser/static/js/runtime-main.448372ee.js",
     "runtime-main.js.map": "/crypto-purchaser/static/js/runtime-main.448372ee.js.map",
     "static/js/2.fbda87a8.chunk.js": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js",
     "static/js/2.fbda87a8.chunk.js.map": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js.map",
     "index.html": "/crypto-purchaser/index.html",
-    "precache-manifest.3be077af4af0797b6012135f5b77deac.js": "/crypto-purchaser/precache-manifest.3be077af4af0797b6012135f5b77deac.js",
+    "precache-manifest.df0ad583504597c4a79b92e4dfd311d2.js": "/crypto-purchaser/precache-manifest.df0ad583504597c4a79b92e4dfd311d2.js",
     "service-worker.js": "/crypto-purchaser/service-worker.js",
     "static/js/2.fbda87a8.chunk.js.LICENSE.txt": "/crypto-purchaser/static/js/2.fbda87a8.chunk.js.LICENSE.txt",
     "static/media/bitstamp-logo.svg": "/crypto-purchaser/static/media/bitstamp-logo.692dcf7c.svg",
@@ -17,6 +17,6 @@
   "entrypoints": [
     "static/js/runtime-main.448372ee.js",
     "static/js/2.fbda87a8.chunk.js",
-    "static/js/main.ff86a952.chunk.js"
+    "static/js/main.afe37738.chunk.js"
   ]
 }
